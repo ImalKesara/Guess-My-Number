@@ -1,7 +1,7 @@
 'use strict';
-
 let score = 20;
 let highScore = 0;
+
 const displayMessage = (message) => {
   document.querySelector('.message').textContent = message;
 };
@@ -27,7 +27,6 @@ const ranDom = () => {
 };
 
 let secretNumber = ranDom();
-console.log(secretNumber);
 
 const check = document.querySelector('.check');
 check.addEventListener('click', () => {
