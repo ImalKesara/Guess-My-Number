@@ -10,7 +10,23 @@ const displayScore = (Score) => {
   document.querySelector('.score').textContent = Score;
 };
 
-let secretNumber = Math.trunc(Math.random() * 20) + 1;
+const backGroundColor = (color) => {
+  document.querySelector('body').style.backgroundColor = color;
+};
+
+const squareSize = (width) => {
+  document.querySelector('.number').style.width = width;
+};
+
+const SecretNumber = (Secret) => {
+  document.querySelector('.number').textContent = Secret;
+};
+
+const ranDom = () => {
+  return Math.trunc(Math.random() * 20) + 1;
+};
+
+let secretNumber = ranDom();
 console.log(secretNumber);
 
 const check = document.querySelector('.check');
@@ -31,15 +47,15 @@ check.addEventListener('click', () => {
     //when player is won
   } else if (guessNumber === secretNumber) {
     displayMessage('Correct number 🏆');
-    document.querySelector('body').style.backgroundColor = '#60b347';
-    document.querySelector('.number').style.width = '30rem';
-    document.querySelector('.number').textContent = secretNumber;
+    backGroundColor('#60b347');
+    squareSize('30rem');
+    SecretNumber(secretNumber);
 
     if (score > highScore) {
       highScore = score;
       document.querySelector('.highscore').textContent = highScore;
     }
-    // highScore += score;
+    //when screat number and guess number not equal
   } else if (guessNumber !== secretNumber) {
     if (score > 1) {
       displayMessage(
@@ -53,16 +69,16 @@ check.addEventListener('click', () => {
     }
   }
 });
-
+// reset button
 const againBtn = document.querySelector('.again');
 againBtn.addEventListener('click', () => {
   score = 20;
-  secretNumber = Math.trunc(Math.random() * 20) + 1;
+  secretNumber = ranDom();
   displayScore(score);
   displayMessage('Start guessing...');
-  document.querySelector('.number').textContent = '?';
-  document.querySelector('body').style.backgroundColor = 'rgb(34, 34, 34)';
-  document.querySelector('.number').style.width = '15rem';
+  SecretNumber('?');
+  backGroundColor('rgb(34, 34, 34)');
+  squareSize('15rem');
   document.querySelector('.guess').value = '';
 });
 
