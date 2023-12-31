@@ -45,20 +45,30 @@ check.addEventListener('click', () => {
     // highScore += score;
 
     //when player's number too high
-  } else if (guessNumber > secretNumber) {
-    if (score > 1) {
-      document.querySelector('.message').textContent = 'Too high ! 🏔️';
-      score--;
-      document.querySelector('.score').textContent = score;
-    } else {
-      document.querySelector('.message').textContent = 'Game over 🏁';
-      document.querySelector('.score').textContent = 0;
-    }
+    //   } else if (guessNumber > secretNumber) {
+    //     if (score > 1) {
+    //       document.querySelector('.message').textContent = 'Too high ! 🏔️';
+    //       score--;
+    //       document.querySelector('.score').textContent = score;
+    //     } else {
+    //       document.querySelector('.message').textContent = 'Game over 🏁';
+    //       document.querySelector('.score').textContent = 0;
+    //     }
 
-    //when player's number too low
-  } else if (guessNumber < secretNumber) {
-    if (score > 0) {
-      document.querySelector('.message').textContent = 'Too low ! 🪫';
+    //     //when player's number too low
+    //   } else if (guessNumber < secretNumber) {
+    //     if (score > 1) {
+    //       document.querySelector('.message').textContent = 'Too low ! 🪫';
+    //       score--;
+    //       document.querySelector('.score').textContent = score;
+    //     } else {
+    //       document.querySelector('.message').textContent = 'Game over 🏁';
+    //       document.querySelector('.score').textContent = 0;
+    //     }
+  } else if (guessNumber !== secretNumber) {
+    if (score > 1) {
+      document.querySelector('.message').textContent =
+        guessNumber > secretNumber ? 'Too high ! 🏔️' : 'Too low ! 🪫';
       score--;
       document.querySelector('.score').textContent = score;
     } else {
