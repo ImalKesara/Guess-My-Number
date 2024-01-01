@@ -52,3 +52,5 @@ rollDice.addEventListener('click', function() {
         player1EL.classList.toggle('player--active');
     }
 });
+
+rollHold.addEventListener('click', () => {});
