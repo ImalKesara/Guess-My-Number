@@ -62,5 +62,14 @@ rollHold.addEventListener('click', () => {
     scores[activeplayer] += currentScore;
     document.getElementById(`score--${activeplayer}`).textContent =
         scores[activeplayer];
-    switchPlayer();
+    if (scores[activeplayer] >= 20) {
+        document
+            .querySelector(`.player--${activeplayer}`)
+            .classList.add('player--winner');
+        document
+            .querySelector(`.player--${activeplayer}`)
+            .classList.remove('player--active');
+    } else {
+        switchPlayer();
+    }
 });
