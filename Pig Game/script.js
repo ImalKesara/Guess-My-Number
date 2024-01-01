@@ -1,6 +1,8 @@
 'use strict';
 
 //acessing elements
+const player0EL = document.querySelector('.player--0');
+const player1EL = document.querySelector('.player--1');
 const score_0 = document.querySelector('#score--0');
 const score_1 = document.querySelector('#score--1');
 const dice = document.querySelector('.dice');
@@ -36,6 +38,18 @@ rollDice.addEventListener('click', function() {
         //player switch part
         document.getElementById(`current--${activeplayer}`).textContent = 0;
         currentScore = 0;
-        activeplayer = activeplayer === 0 ? 1 : 0;
+        if (activeplayer === 0) {
+            activeplayer = 1;
+            player0EL.classList.remove('player--active');
+            player1EL.classList.add('player--active');
+        } else {
+            activeplayer = 0;
+            player0EL.classList.add('player--active');
+            player1EL.classList.remove('player--active');
+        }
+
+        // activeplayer = activeplayer === 0 ? 1 : 0;
+        // player0EL.classList.toggle('player--active');
+        // player1EL.classList.toggle('player--active');
     }
 });
