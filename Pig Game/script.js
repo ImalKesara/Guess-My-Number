@@ -38,18 +38,17 @@ rollDice.addEventListener('click', function() {
         //player switch part
         document.getElementById(`current--${activeplayer}`).textContent = 0;
         currentScore = 0;
-        if (activeplayer === 0) {
-            activeplayer = 1;
-            player0EL.classList.remove('player--active');
-            player1EL.classList.add('player--active');
-        } else {
-            activeplayer = 0;
-            player0EL.classList.add('player--active');
-            player1EL.classList.remove('player--active');
-        }
-
-        // activeplayer = activeplayer === 0 ? 1 : 0;
-        // player0EL.classList.toggle('player--active');
-        // player1EL.classList.toggle('player--active');
+        // if (activeplayer === 0) {
+        //     activeplayer = 1;
+        //     player0EL.classList.remove('player--active');
+        //     player1EL.classList.add('player--active');
+        // } else {
+        //     activeplayer = 0;
+        //     player0EL.classList.add('player--active');
+        //     player1EL.classList.remove('player--active');
+        // }
+        activeplayer = activeplayer === 0 ? 1 : 0;
+        player0EL.classList.toggle('player--active');
+        player1EL.classList.toggle('player--active');
     }
 });
