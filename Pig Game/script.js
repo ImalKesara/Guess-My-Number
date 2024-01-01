@@ -13,11 +13,20 @@ const playerCurrScore0 = document.getElementById('current--0');
 const playerCurrScore1 = document.getElementById('current--1');
 
 //starting elements
+let scores = [0, 0];
 score_0.textContent = 0;
 score_1.textContent = 0;
 dice.classList.add('hidden');
 let currentScore = 0;
 let activeplayer = 0; // active player 0 = player 1,active player 1 =player 2
+
+const switchPlayer = () => {
+    document.getElementById(`current--${activeplayer}`).textContent = 0;
+    currentScore = 0;
+    activeplayer = activeplayer === 0 ? 1 : 0;
+    player0EL.classList.toggle('player--active');
+    player1EL.classList.toggle('player--active');
+};
 
 //rolldice functionallity
 rollDice.addEventListener('click', function() {
@@ -35,9 +44,8 @@ rollDice.addEventListener('click', function() {
         document.getElementById(`current--${activeplayer}`).textContent =
             currentScore;
     } else {
+        switchPlayer();
         //player switch part
-        document.getElementById(`current--${activeplayer}`).textContent = 0;
-        currentScore = 0;
         // if (activeplayer === 0) {
         //     activeplayer = 1;
         //     player0EL.classList.remove('player--active');
@@ -47,10 +55,12 @@ rollDice.addEventListener('click', function() {
         //     player0EL.classList.add('player--active');
         //     player1EL.classList.remove('player--active');
         // }
-        activeplayer = activeplayer === 0 ? 1 : 0;
-        player0EL.classList.toggle('player--active');
-        player1EL.classList.toggle('player--active');
     }
 });
 
-rollHold.addEventListener('click', () => {});
+rollHold.addEventListener('click', () => {
+    scores[activeplayer] += currentScore;
+    document.getElementById(`score--${activeplayer}`).textContent =
+        scores[activeplayer];
+    switchPlayer();
+});
