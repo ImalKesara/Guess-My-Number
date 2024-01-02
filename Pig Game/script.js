@@ -31,46 +31,51 @@ const switchPlayer = () => {
 
 //rolldice functionallity
 rollDice.addEventListener('click', function () {
-  //generate random number
-  const randomNumber = Math.trunc(Math.random() * 6) + 1;
+  if (playing) {
+    //generate random number
+    const randomNumber = Math.trunc(Math.random() * 6) + 1;
 
-  //display roll image
-  dice.classList.remove('hidden');
-  dice.src = `/images/dice-${randomNumber}.png`;
-  console.log(randomNumber);
+    //display roll image
+    dice.classList.remove('hidden');
+    dice.src = `/images/dice-${randomNumber}.png`;
+    console.log(randomNumber);
 
-  if (randomNumber !== 1) {
-    //add dice to current scroe
-    currentScore += randomNumber;
-    document.getElementById(`current--${activeplayer}`).textContent =
-      currentScore;
-  } else {
-    switchPlayer();
-    //player switch part
-    // if (activeplayer === 0) {
-    //     activeplayer = 1;
-    //     player0EL.classList.remove('player--active');
-    //     player1EL.classList.add('player--active');
-    // } else {
-    //     activeplayer = 0;
-    //     player0EL.classList.add('player--active');
-    //     player1EL.classList.remove('player--active');
-    // }
+    if (randomNumber !== 1) {
+      //add dice to current scroe
+      currentScore += randomNumber;
+      document.getElementById(`current--${activeplayer}`).textContent =
+        currentScore;
+    } else {
+      switchPlayer();
+      //player switch part
+      // if (activeplayer === 0) {
+      //     activeplayer = 1;
+      //     player0EL.classList.remove('player--active');
+      //     player1EL.classList.add('player--active');
+      // } else {
+      //     activeplayer = 0;
+      //     player0EL.classList.add('player--active');
+      //     player1EL.classList.remove('player--active');
+      // }
+    }
   }
 });
 
 rollHold.addEventListener('click', () => {
-  scores[activeplayer] += currentScore;
-  document.getElementById(`score--${activeplayer}`).textContent =
-    scores[activeplayer];
-  if (scores[activeplayer] >= 20) {
-    document
-      .querySelector(`.player--${activeplayer}`)
-      .classList.add('player--winner');
-    document
-      .querySelector(`.player--${activeplayer}`)
-      .classList.remove('player--active');
-  } else {
-    switchPlayer();
+  if (playing) {
+    scores[activeplayer] += currentScore;
+    document.getElementById(`score--${activeplayer}`).textContent =
+      scores[activeplayer];
+    if (scores[activeplayer] >= 20) {
+      playing = false;
+      document
+        .querySelector(`.player--${activeplayer}`)
+        .classList.add('player--winner');
+      document
+        .querySelector(`.player--${activeplayer}`)
+        .classList.remove('player--active');
+    } else {
+      switchPlayer();
+    }
   }
 });
