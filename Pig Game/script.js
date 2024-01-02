@@ -19,57 +19,58 @@ score_1.textContent = 0;
 dice.classList.add('hidden');
 let currentScore = 0;
 let activeplayer = 0; // active player 0 = player 1,active player 1 =player 2
+let playing = true;
 
 const switchPlayer = () => {
-    document.getElementById(`current--${activeplayer}`).textContent = 0;
-    currentScore = 0;
-    activeplayer = activeplayer === 0 ? 1 : 0;
-    player0EL.classList.toggle('player--active');
-    player1EL.classList.toggle('player--active');
+  document.getElementById(`current--${activeplayer}`).textContent = 0;
+  currentScore = 0;
+  activeplayer = activeplayer === 0 ? 1 : 0;
+  player0EL.classList.toggle('player--active');
+  player1EL.classList.toggle('player--active');
 };
 
 //rolldice functionallity
-rollDice.addEventListener('click', function() {
-    //generate random number
-    const randomNumber = Math.trunc(Math.random() * 6) + 1;
+rollDice.addEventListener('click', function () {
+  //generate random number
+  const randomNumber = Math.trunc(Math.random() * 6) + 1;
 
-    //display roll image
-    dice.classList.remove('hidden');
-    dice.src = `/images/dice-${randomNumber}.png`;
-    console.log(randomNumber);
+  //display roll image
+  dice.classList.remove('hidden');
+  dice.src = `/images/dice-${randomNumber}.png`;
+  console.log(randomNumber);
 
-    if (randomNumber !== 1) {
-        //add dice to current scroe
-        currentScore += randomNumber;
-        document.getElementById(`current--${activeplayer}`).textContent =
-            currentScore;
-    } else {
-        switchPlayer();
-        //player switch part
-        // if (activeplayer === 0) {
-        //     activeplayer = 1;
-        //     player0EL.classList.remove('player--active');
-        //     player1EL.classList.add('player--active');
-        // } else {
-        //     activeplayer = 0;
-        //     player0EL.classList.add('player--active');
-        //     player1EL.classList.remove('player--active');
-        // }
-    }
+  if (randomNumber !== 1) {
+    //add dice to current scroe
+    currentScore += randomNumber;
+    document.getElementById(`current--${activeplayer}`).textContent =
+      currentScore;
+  } else {
+    switchPlayer();
+    //player switch part
+    // if (activeplayer === 0) {
+    //     activeplayer = 1;
+    //     player0EL.classList.remove('player--active');
+    //     player1EL.classList.add('player--active');
+    // } else {
+    //     activeplayer = 0;
+    //     player0EL.classList.add('player--active');
+    //     player1EL.classList.remove('player--active');
+    // }
+  }
 });
 
 rollHold.addEventListener('click', () => {
-    scores[activeplayer] += currentScore;
-    document.getElementById(`score--${activeplayer}`).textContent =
-        scores[activeplayer];
-    if (scores[activeplayer] >= 20) {
-        document
-            .querySelector(`.player--${activeplayer}`)
-            .classList.add('player--winner');
-        document
-            .querySelector(`.player--${activeplayer}`)
-            .classList.remove('player--active');
-    } else {
-        switchPlayer();
-    }
+  scores[activeplayer] += currentScore;
+  document.getElementById(`score--${activeplayer}`).textContent =
+    scores[activeplayer];
+  if (scores[activeplayer] >= 20) {
+    document
+      .querySelector(`.player--${activeplayer}`)
+      .classList.add('player--winner');
+    document
+      .querySelector(`.player--${activeplayer}`)
+      .classList.remove('player--active');
+  } else {
+    switchPlayer();
+  }
 });
