@@ -79,3 +79,8 @@ rollHold.addEventListener('click', () => {
     }
   }
 });
+
+
+rollNew.addEventListener('click', ()=>{
+  
+})
