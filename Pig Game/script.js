@@ -21,6 +21,21 @@ let currentScore = 0;
 let activeplayer = 0; // active player 0 = player 1,active player 1 =player 2
 let playing = true;
 
+
+//new game funtion
+const init = ()=>{
+  currentScore = 0;
+  score_0.textContent = 0;
+  score_1.textContent = 0;
+  playerCurrScore0.textContent =0;
+  playerCurrScore1.textContent =0;
+  player0EL.classList.remove('player--winner');
+  player1EL.classList.remove('player--winner');
+  player0EL.classList.add('player--active');
+  player1EL.classList.remove('player--active');
+}
+
+
 const switchPlayer = () => {
   document.getElementById(`current--${activeplayer}`).textContent = 0;
   currentScore = 0;
@@ -80,7 +95,9 @@ rollHold.addEventListener('click', () => {
   }
 });
 
-
+//fedora linux 
 rollNew.addEventListener('click', ()=>{
   
+
+
 })
