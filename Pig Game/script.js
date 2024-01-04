@@ -13,28 +13,30 @@ const playerCurrScore0 = document.getElementById('current--0');
 const playerCurrScore1 = document.getElementById('current--1');
 
 //starting elements
-let scores = [0, 0];
-score_0.textContent = 0;
-score_1.textContent = 0;
-dice.classList.add('hidden');
-let currentScore = 0;
-let activeplayer = 0; // active player 0 = player 1,active player 1 =player 2
-let playing = true;
+let scores,currentScore,activeplayer,playing;
 
 
 //new game funtion
 const init = ()=>{
+  scores = [0, 0];
+  currentScore = 0;
+  activeplayer = 0; // active player 0 = player 1,active player 1 =player 2
+  playing = true;
+  score_0.textContent = 0;
+  score_1.textContent = 0;
   currentScore = 0;
   score_0.textContent = 0;
   score_1.textContent = 0;
   playerCurrScore0.textContent =0;
   playerCurrScore1.textContent =0;
+  dice.classList.add('hidden');
   player0EL.classList.remove('player--winner');
   player1EL.classList.remove('player--winner');
   player0EL.classList.add('player--active');
   player1EL.classList.remove('player--active');
 }
 
+init();
 
 const switchPlayer = () => {
   document.getElementById(`current--${activeplayer}`).textContent = 0;
@@ -96,8 +98,4 @@ rollHold.addEventListener('click', () => {
 });
 
 //fedora linux 
-rollNew.addEventListener('click', ()=>{
-  
-
-
-})
+rollNew.addEventListener('click',init);
